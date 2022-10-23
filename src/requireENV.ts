@@ -4,7 +4,6 @@ import dotenv from "dotenv-flow";
 dotenv.config({ silent: true });
 
 const {
-  INTERVAL,
   IMDB_USER_ID,
   NCORE_USERNAME,
   NCORE_PASSWORD,
@@ -14,7 +13,6 @@ const {
 } = process.env;
 
 const vars = [
-  INTERVAL,
   IMDB_USER_ID,
   NCORE_USERNAME,
   NCORE_PASSWORD,
