@@ -4,7 +4,6 @@ import fetchIMDBWatchList from "./fetchIMDBWatchlist";
 import requireENV from "./requireENV";
 import getNcoreDownloadUrls from "./getNcoreDownloadUrls";
 import { qBittorrentClient } from "@robertklep/qbittorrent";
-import type { TorrentAddParameters } from "@robertklep/qbittorrent";
 
 dotenv.config({ silent: true });
 
@@ -21,6 +20,7 @@ const run = async () => {
       QBITTORRENT_PASSWORD,
     } = process.env;
 
+    console.log(chalk.grey(`Running job...`));
     // Fetch IMDB Movie IDs
     const movieIds = await fetchIMDBWatchList(IMDB_USER_ID!);
 
@@ -39,6 +39,8 @@ const run = async () => {
     );
 
     await client.torrents.add({ urls: downloadUrls, category: "Movie" });
+
+    console.log(chalk.green(`Done, added ${downloadUrls.length} torrents.`));
   } catch (err) {
     console.error(err);
     console.log(chalk.red("Error during operation!"));
